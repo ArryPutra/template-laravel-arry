@@ -14,4 +14,12 @@ class IndexController extends Controller
             'daftarBerita' => Berita::paginate(10)
         ]);
     }
+
+    public function berita(int $id)
+    {
+        return view('pages.berita', [
+            'title' => 'Berita',
+            'berita' => Berita::find($id)
+        ]);
+    }
 }

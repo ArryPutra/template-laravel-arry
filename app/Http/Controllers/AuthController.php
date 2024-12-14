@@ -13,7 +13,14 @@ class AuthController extends Controller
     public function login()
     {
         if (Auth::check()) {
-            return redirect('/admin/dashboard');
+            switch (Auth::user()->peran_id) {
+                case 1:
+                    return redirect('/admin/dashboard');
+                    break;
+                case 2:
+                    return redirect('/pegawai/dashboard');
+                    break;
+            }
         }
         return view('pages.auth.login', [
             'title' => 'Login'
@@ -34,7 +41,7 @@ class AuthController extends Controller
         ])) {
             $request->session()->regenerate();
 
-            return redirect()->intended('/admin/dashboard');
+            return redirect()->intended('/login');
         }
 
         return back()->with('gagal', 'Login gagal.');

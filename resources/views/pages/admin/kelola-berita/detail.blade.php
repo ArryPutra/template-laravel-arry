@@ -9,7 +9,7 @@
         </div>
         <div>
             <h1>Isi:</h1>
-            <h1 class="font-bold text-lg">{{ $berita->isi }}</h1>
+            <h1 class="text-lg">{{ $berita->isi }}</h1>
         </div>
         <div>
             <h1>Gambar:</h1>

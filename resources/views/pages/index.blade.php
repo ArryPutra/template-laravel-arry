@@ -1,6 +1,6 @@
 {{-- 
 
-    COPY:
+    COPY HERE:
     
     <section class="w-full flex justify-center">
         <span id="berita" class="absolute -translate-y-20"></span>
@@ -80,23 +80,28 @@
                     <div class="w-3/4 h-1 bg-primary mt-2"></div>
                 </h1>
 
-                <main class="grid grid-cols-2 max-sm:grid-cols-1 gap-4">
-                    @foreach ($daftarBerita as $berita)
-                        <div>
-                            <div class="w-full aspect-[3/2] rounded-xl overflow-hidden">
-                                <img class="hover:scale-110 duration-300 object-cover object-center w-full h-full"
-                                    src="{{ 'storage/' . $berita->gambar }}">
+                <main class="grid grid-cols-2 max-sm:grid-cols-1 gap-8">
+                    @if (count($daftarBerita) > 0)
+                        @foreach ($daftarBerita as $berita)
+                            <div>
+                                <div class="w-full aspect-[3/2] rounded-xl overflow-hidden">
+                                    <img class="hover:scale-110 duration-300 object-cover object-center w-full h-full"
+                                        src="{{ 'storage/' . $berita->gambar }}">
+                                </div>
+                                <h1 class="text-gray-500 text-sm mt-2">
+                                    {{ Carbon::parse($berita->created_at)->translatedFormat('d F Y') }}
+                                </h1>
+                                <h1 class="font-semibold text-2xl">{{ $berita->judul }}</h1>
+                                <p class="mb-2 text-gray-500">
+                                    {{ Str::limit($berita->isi, 100) }}
+                                </p>
+                                <a href="{{ route('berita', $berita->id) }}" class="text-blue-500 hover:underline">Baca
+                                    artikel</a>
                             </div>
-                            <h1 class="text-gray-500 text-sm mt-2">
-                                {{ Carbon::parse($berita->created_at)->translatedFormat('d F Y') }}
-                            </h1>
-                            <h1 class="font-semibold text-lg">{{ $berita->judul }}</h1>
-                            <p class="mb-2 text-gray-500">
-                                {{ Str::limit($berita->isi, 50) }}
-                            </p>
-                            <a href="" class="text-blue-500 hover:underline">Baca artikel</a>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    @else
+                        <p class="text-gray-500">Tidak ada berita.</p>
+                    @endif
                 </main>
             </div>
         </section>

@@ -7,13 +7,13 @@
             <nav>
                 <ul id="headerMenu" class="flex gap-6 text-white max-sm:flex max-sm:flex-col">
                     <li @click="open = false" class="font-bold text-lg duration-75 sm:hover:text-primary"><a
-                            href="#">Beranda</a></li>
+                            href="/">Beranda</a></li>
                     <li @click="open = false" class="font-bold text-lg duration-75 sm:hover:text-primary"><a
-                            href="#tentang">Tentang</a></li>
+                            href="/#tentang">Tentang</a></li>
                     <li @click="open = false" class="font-bold text-lg duration-75 sm:hover:text-primary"><a
-                            href="#berita">Berita</a></li>
+                            href="/#berita">Berita</a></li>
                     <li @click="open = false" class="font-bold text-lg duration-75 sm:hover:text-primary"><a
-                            href="#kontak">Kontak</a></li>
+                            href="/#kontak">Kontak</a></li>
                 </ul>
             </nav>
             <x-button href="{{ route('login') }}" class="w-fit bg-secondary">
@@ -34,18 +34,25 @@
 
     const openMenuMobileIcon = document.getElementById('openMenuMobileIcon');
 
-    window.addEventListener('scroll', () => {
-        const value = window.scrollY;
-        if (value >= 50) {
-            header.classList.add("bg-white", "border-gray-100");
-            headerTitle.classList.add("!text-primary");
-            headerMenu.classList.add("sm:!text-black");
-            openMenuMobileIcon.classList.add('!fill-black')
-        } else {
-            header.classList.remove("bg-white", "border-gray-100");
-            headerTitle.classList.remove("!text-primary");
-            headerMenu.classList.remove("sm:!text-black");
-            openMenuMobileIcon.classList.remove('!fill-black')
-        }
-    })
+    @if (Request::is('berita*'))
+        header.classList.add("bg-white", "border-gray-100");
+        headerTitle.classList.add("!text-primary");
+        headerMenu.classList.add("sm:!text-black");
+        openMenuMobileIcon.classList.add('!fill-black')
+    @else
+        window.addEventListener('scroll', () => {
+            const value = window.scrollY;
+            if (value >= 50) {
+                header.classList.add("bg-white", "border-gray-100");
+                headerTitle.classList.add("!text-primary");
+                headerMenu.classList.add("sm:!text-black");
+                openMenuMobileIcon.classList.add('!fill-black')
+            } else {
+                header.classList.remove("bg-white", "border-gray-100");
+                headerTitle.classList.remove("!text-primary");
+                headerMenu.classList.remove("sm:!text-black");
+                openMenuMobileIcon.classList.remove('!fill-black')
+            }
+        })
+    @endif
 </script>

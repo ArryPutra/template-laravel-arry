@@ -10,7 +10,7 @@
             label="Judul Berita" />
         <x-textfield.area name="isi" value="{{ old('isi', $berita->isi ?? '') }}" placeholder="Masukkan isi berita"
             label="Isi Berita" />
-        <x-file-input name="gambar"></x-file-input>
+        <x-file-input name="gambar" label="Unggah Gambar" />
         <x-button type="submit" class="w-fit mt-2">
             @if ($route['method'] == 'POST')
                 Tambah

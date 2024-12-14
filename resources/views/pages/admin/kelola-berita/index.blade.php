@@ -3,6 +3,9 @@
 @push('head')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @endpush
+@php
+    use Carbon\Carbon;
+@endphp
 
 @section('content')
     <div class="flex w-full justify-between flex-wrap gap-4">
@@ -34,11 +37,11 @@
                 <x-table.tbody>
                     <x-table.td>{{ ($daftarBerita->currentPage() - 1) * $daftarBerita->perPage() + $loop->iteration }}.</x-table.td>
                     <x-table.td>{{ $berita->judul }}</x-table.td>
-                    <x-table.td>{{ $berita->isi }}</x-table.td>
+                    <x-table.td>{{ Str::limit($berita->isi, 200) }}</x-table.td>
                     <x-table.td>
-                        <img class="aspect-[3/2] h-28 object-cover object-center" src="{{ '/storage/' . $berita->gambar }}">
+                        <img class="aspect-[3/2] h-44 object-cover object-center" src="{{ '/storage/' . $berita->gambar }}">
                     </x-table.td>
-                    <x-table.td>{{ $berita->created_at }}</x-table.td>
+                    <x-table.td>{{ Carbon::parse($berita->created_at)->translatedFormat('d F Y H:i:s') }}</x-table.td>
                     <x-table.td>
                         <div class="flex gap-2 flex-wrap">
                             <x-button href="{{ route('kelola-berita.edit', $berita->id) }}">Edit</x-button>

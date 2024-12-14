@@ -59,37 +59,51 @@
             <box-icon @click="isOpenSidebarMenu = false" class="fill-white size-12 md:hidden" name='x'></box-icon>
         </div>
         <nav class="w-full flex flex-col mt-4 gap-2">
-            {{-- DASHBOARD --}}
-            <a href="{{ route('admin.dashboard') }}"
-                class="
-            {{ Request::is('admin/dashboard*') ? 'bg-primary/10' : 'opacity-70' }}
-            w-full flex items-center p-3 gap-2 relative hover:opacity-100">
-                <box-icon class="fill-white" name='dashboard' type='solid'></box-icon>
-                <span class="font-semibold text-lg">Dashboard</span>
-                @if (Request::is('admin/dashboard*'))
-                    <div class="w-1 absolute h-full bg-primary right-0"></div>
-                @endif
-            </a>
-            {{-- KELOLA BERITA --}}
-            <a href="{{ route('kelola-berita.index') }}"
-                class="{{ Request::is('admin/kelola-berita*') ? 'bg-primary/10' : 'opacity-70' }}
-            w-full flex items-center p-3 gap-2 relative hover:opacity-100">
-                <box-icon class="fill-white" name='news' type="solid"></box-icon>
-                <span class="font-semibold text-lg">Kelola Berita</span>
-                @if (Request::is('admin/kelola-berita*'))
-                    <div class="w-1 absolute h-full bg-primary right-0"></div>
-                @endif
-            </a>
-            {{-- KELOLA PEGAWAI --}}
-            <a href="{{ route('kelola-pegawai.index') }}"
-                class="{{ Request::is('admin/kelola-pegawai*') ? 'bg-primary/10' : 'opacity-70' }}
-            w-full flex items-center p-3 gap-2 relative hover:opacity-100">
-                <box-icon class="fill-white" name='group'></box-icon>
-                <span class="font-semibold text-lg">Kelola Pegawai</span>
-                @if (Request::is('admin/kelola-pegawai*'))
-                    <div class="w-1 absolute h-full bg-primary right-0"></div>
-                @endif
-            </a>
+            @if (Auth::user()->peran_id == 1)
+                {{-- DASHBOARD --}}
+                <a href="{{ route('admin.dashboard') }}"
+                    class="
+        {{ Request::is('admin/dashboard*') ? 'bg-primary/10' : 'opacity-70' }}
+        w-full flex items-center p-3 gap-2 relative hover:opacity-100">
+                    <box-icon class="fill-white" name='dashboard' type='solid'></box-icon>
+                    <span class="font-semibold text-lg">Dashboard</span>
+                    @if (Request::is('admin/dashboard*'))
+                        <div class="w-1 absolute h-full bg-primary right-0"></div>
+                    @endif
+                </a>
+                {{-- KELOLA BERITA --}}
+                <a href="{{ route('kelola-berita.index') }}"
+                    class="{{ Request::is('admin/kelola-berita*') ? 'bg-primary/10' : 'opacity-70' }}
+        w-full flex items-center p-3 gap-2 relative hover:opacity-100">
+                    <box-icon class="fill-white" name='news' type="solid"></box-icon>
+                    <span class="font-semibold text-lg">Kelola Berita</span>
+                    @if (Request::is('admin/kelola-berita*'))
+                        <div class="w-1 absolute h-full bg-primary right-0"></div>
+                    @endif
+                </a>
+                {{-- KELOLA PEGAWAI --}}
+                <a href="{{ route('kelola-pegawai.index') }}"
+                    class="{{ Request::is('admin/kelola-pegawai*') ? 'bg-primary/10' : 'opacity-70' }}
+        w-full flex items-center p-3 gap-2 relative hover:opacity-100">
+                    <box-icon class="fill-white" name='group'></box-icon>
+                    <span class="font-semibold text-lg">Kelola Pegawai</span>
+                    @if (Request::is('admin/kelola-pegawai*'))
+                        <div class="w-1 absolute h-full bg-primary right-0"></div>
+                    @endif
+                </a>
+            @elseif(Auth::user()->peran_id == 2)
+                {{-- DASHBOARD --}}
+                <a href="{{ route('pegawai.dashboard') }}"
+                    class="
+                {{ Request::is('pegawai/dashboard*') ? 'bg-primary/10' : 'opacity-70' }}
+                w-full flex items-center p-3 gap-2 relative hover:opacity-100">
+                    <box-icon class="fill-white" name='dashboard' type='solid'></box-icon>
+                    <span class="font-semibold text-lg">Dashboard</span>
+                    @if (Request::is('pegawai/dashboard*'))
+                        <div class="w-1 absolute h-full bg-primary right-0"></div>
+                    @endif
+                </a>
+            @endif
         </nav>
     </aside>
 </div>
