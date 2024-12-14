@@ -1,0 +1,10 @@
+<div class="flex flex-col">
+    <label class="text-lg font-medium mb-2" for="file_input">Upload file</label>
+    <input name="{{ $attributes->get('name') }}"
+        class="bg-gray-50 rounded-lg border cursor-pointer file:p-2 file:rounded-lg file:border-none file:mr-3 file:cursor-pointer"
+        id="file_input" type="file">
+    @error($attributes->get('name'))
+        <p class="text-red-600 mt-2">{{ $message }}</p>
+    @enderror
+
+</div>

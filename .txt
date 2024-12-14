@@ -1,0 +1,4 @@
+CARA PENGGUNAAN TEMPLATE "LARAVEL ARRY"
+
+Step:
+1. Konfigurasi DATABASE_NAME di file .env
