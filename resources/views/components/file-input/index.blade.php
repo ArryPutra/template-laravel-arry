@@ -1,4 +1,4 @@
-<div class="flex flex-col">
+<div id="{{ $attributes->get('id') }}" class="flex flex-col">
     <label class="text-lg font-medium mb-2" for="file_input">{{ $label }}</label>
     <input name="{{ $attributes->get('name') }}"
         class="bg-gray-50 rounded-lg border cursor-pointer file:p-2 file:rounded-lg file:border-none file:mr-3 file:cursor-pointer"

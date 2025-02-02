@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Berita;
+use App\Models\KategoriBerita;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -45,7 +46,8 @@ class KelolaBeritaController extends Controller
             'route' => [
                 'method' => 'POST',
                 'action' => route('kelola-berita.store')
-            ]
+            ],
+            'daftarKategoriBerita' => KategoriBerita::all()
         ]);
     }
 
@@ -55,11 +57,17 @@ class KelolaBeritaController extends Controller
             'judul' => 'required|max:255',
             'isi' => 'required',
             'gambar' => 'required|image|mimes:jpeg,png,jpg|max:10240',
+            'kategori' => 'required'
         ]);
 
         $validated['gambar'] = $request->file('gambar')->store('berita');
 
-        Berita::create($validated);
+        Berita::create([
+            'judul' => $validated['judul'],
+            'isi' => $validated['isi'],
+            'gambar' => $validated['gambar'],
+            'kategori_id' => $validated['kategori']
+        ]);
 
         return redirect()->route('kelola-berita.index')
             ->with('berhasil', 'Berita berhasil ditambahkan.');
@@ -83,7 +91,8 @@ class KelolaBeritaController extends Controller
             'route' => [
                 'method' => 'PUT',
                 'action' => route('kelola-berita.update', $berita->id)
-            ]
+            ],
+            'daftarKategoriBerita' => KategoriBerita::all()
         ]);
     }
 

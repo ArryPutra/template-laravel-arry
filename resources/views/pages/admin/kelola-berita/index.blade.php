@@ -39,7 +39,10 @@
                     <x-table.td>{{ $berita->judul }}</x-table.td>
                     <x-table.td>{{ Str::limit($berita->isi, 200) }}</x-table.td>
                     <x-table.td>
-                        <img class="aspect-[3/2] h-44 object-cover object-center" src="{{ '/storage/' . $berita->gambar }}">
+                        <a href="{{ asset('storage/' . $berita->gambar) }}" target="_blank">
+                            <img class="aspect-[3/2] h-44 object-cover object-center rounded-md"
+                                src="{{ '/storage/' . $berita->gambar }}">
+                        </a>
                     </x-table.td>
                     <x-table.td>{{ Carbon::parse($berita->created_at)->translatedFormat('d F Y H:i:s') }}</x-table.td>
                     <x-table.td>

@@ -49,7 +49,7 @@
         </div>
     </header>
 
-    <aside class="fixed top-0 bg-slate-900 text-white w-60 h-screen pb-4 duration-150 z-20"
+    <aside x-cloak class="fixed top-0 bg-slate-900 text-white w-60 h-screen pb-4 duration-150 z-20"
         x-bind:class="{
             'left-0': isOpenSidebarMenu,
             'max-md:-left-64': !isOpenSidebarMenu
